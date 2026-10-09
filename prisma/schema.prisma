@@ -1,0 +1,60 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  UNVERIFIED
+}
+
+model User {
+  id                         String       @id @default(uuid())
+  email                      String       @unique
+  username                   String       @unique
+  passwordHash               String
+  displayName                String
+  bio                        String?
+  avatarUrl                  String?
+  reputation                 Int          @default(1)
+  role                       Role         @default(USER)
+  status                     UserStatus   @default(ACTIVE)
+  refreshTokenHash           String?
+  verificationToken          String?
+  verificationTokenExpiresAt DateTime?
+  resetToken                 String?
+  resetTokenExpiresAt        DateTime?
+  oauthProvider              String?
+  oauthId                    String?
+  createdAt                  DateTime     @default(now())
+  updatedAt                  DateTime     @updatedAt
+
+  // Domain relations will be added in subsequent phases
+  reputationEvents           ReputationEvent[]
+
+  @@map("users")
+}
+
+model ReputationEvent {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  delta      Int
+  reason     String
+  sourceType String
+  sourceId   String
+  createdAt  DateTime @default(now())
+
+  @@map("reputation_events")
+}
