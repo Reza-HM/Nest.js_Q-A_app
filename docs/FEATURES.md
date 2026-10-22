@@ -9,24 +9,24 @@ This checklist breaks down the features defined in [`docs/PRODUCT_SPEC.md`](./PR
 ### Build Phase 1: Accounts, Users, and Core Posts CRUD
 
 #### 1. Accounts and Auth
-- [ ] **Data Model & Migrations**
-  - [ ] Define `User` schema (email, username, passwordHash, displayName, bio, avatarUrl, reputation, role, status, createdAt).
-  - [ ] Configure database constraints (unique email, unique username).
-- [ ] **Registration & Email Verification**
-  - [ ] Implement registration DTO with validation (`email`, `username`, `password`, `displayName`).
-  - [ ] Hash passwords using bcrypt/argon2 before persistence.
-  - [ ] Generate email verification token and dispatch verification email.
-  - [ ] Implement email verification endpoint (`/auth/verify-email`) to transition user to active status.
+- [x] **Data Model & Migrations**
+  - [x] Define `User` schema (email, username, passwordHash, displayName, bio, avatarUrl, reputation, role, status, createdAt).
+  - [x] Configure database constraints (unique email, unique username).
+- [x] **Registration & Email Verification**
+  - [x] Implement registration DTO with validation (`email`, `username`, `password`, `displayName`).
+  - [x] Hash passwords using bcrypt/argon2 before persistence.
+  - [x] Generate email verification token and dispatch verification email.
+  - [x] Implement email verification endpoint (`/auth/verify-email`) to transition user to active status.
 - [ ] **Authentication & Token Management**
-  - [ ] Implement local login endpoint returning JWT access and refresh tokens.
-  - [ ] Implement refresh token rotation and hashed refresh token persistence.
-  - [ ] Implement token revocation on logout (`/auth/logout`).
-  - [ ] Implement password reset request and token verification endpoint (`/auth/reset-password`).
+  - [x] Implement local login endpoint returning JWT access and refresh tokens.
+  - [x] Implement refresh token rotation and hashed refresh token persistence.
+  - [x] Implement token revocation on logout (`/auth/logout`).
+  - [x] Implement password reset request and token verification endpoint (`/auth/reset-password`).
   - [ ] Configure OAuth integration (Google or GitHub).
-- [ ] **User Profiles & Lifecycle**
-  - [ ] Implement public profile endpoint (`GET /users/:id` or `GET /users/:username`) with reputation, post counts, and stats.
-  - [ ] Implement profile update endpoint (`PATCH /users/me`) for bio, avatarUrl, and displayName.
-  - [ ] Implement account deletion with content anonymization (reassign posts to an anonymized user instead of hard deletion).
+- [x] **User Profiles & Lifecycle**
+  - [x] Implement public profile endpoint (`GET /users/:id` or `GET /users/:username`) with reputation, post counts, and stats.
+  - [x] Implement profile update endpoint (`PATCH /users/me`) for bio, avatarUrl, and displayName.
+  - [x] Implement account deletion with content anonymization (reassign posts to an anonymized user instead of hard deletion).
 
 #### 2. Questions CRUD (Core)
 - [ ] **Data Model & Migrations**
